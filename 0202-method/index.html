@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../lib/vue.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      {{total}}
+      <button @click="aumentar">Aumentar</button>
+      <button @click="diminuir">Diminuir</button>
+      <br />
+    </div>
+
+    <div id="app2">
+      {{compra}}
+      <button @click="mudarCompra('guitarra')">Guitarra</button>
+      <button @click="mudarCompra('bateria')">Bateria</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          contador: 0,
+          total: 0,
+        },
+        methods: {
+          aumentar() {
+            this.total++;
+          },
+          diminuir() {
+            this.total--;
+          },
+        },
+      });
+
+      console.log(vm);
+
+      const vm2 = new Vue({
+        el: "#app2",
+        data: {
+          compra: "",
+        },
+
+        methods: {
+          mudarCompra(mudar) {
+            this.compra = mudar;
+          },
+        },
+      });
+      console.log(vm2);
+    </script>
+  </body>
+</html>
