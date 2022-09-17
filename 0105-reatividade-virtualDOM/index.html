@@ -4,18 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./lib/vue.js"></script>
-    <title>Vue.js</title>
+    <title>Document</title>
+    <script src="../lib/vue.js"></script>
   </head>
-
   <body>
     <div id="app">
-      {{produto}} {{produtos}}
-      <ul>
-        <li v-for="prod in produtos">{{prod}}</li>
-      </ul>
-      <p>{{mensagem}} {{produtos[1]}}</p>
-    </div>
+    <p>Camisas - R$ <span>{{preco}}</span></p>
+    <button @click="total++">Adicionar</button>
+    <button @click="total--">Remover</button>
+    <span>{{total}}</button>
+    <p>Total: <span>{{preco * total}}</span></p>
+  </div>
 
     <script src="./js/app.js"></script>
   </body>

@@ -14,6 +14,13 @@ window.onload=()=>{
 
   const vue = new Vue(options);
 
+
+  console.log(vue.produto);
+
+  console.log(vue.mensagem);
+
+  vue.mensagem="isto é reatividade";
+  console.log(vue.mensagem);
   console.log(vue);
 
 }
