@@ -9,16 +9,14 @@
   </head>
 
   <body>
-    <div id="app"></div>
+    <div id="app">
+      {{produto}} {{produtos}}
+      <ul>
+        <li v-for="prod in produtos">{{prod}}</li>
+      </ul>
+      <p>{{mensagem}} {{produtos[1]}}</p>
+    </div>
 
-    <script>
-      options = {
-        el: "#app",
-      };
-
-      const vue = new Vue(options);
-
-      console.log(vue);
-    </script>
+    <script src="./js/app.js"></script>
   </body>
 </html>
