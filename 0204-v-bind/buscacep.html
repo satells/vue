@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="../lib/vue.js"></script>
+
+    <title>busca cep por link</title>
+  </head>
+  <body>
+    <div id="app">
+      <a @click.prevent="findCEP" href="https://viacep.com.br/ws/03566000/json/"
+        >CEP 03566000</a
+      ><br />
+      <a @click.prevent="findCEP" href="https://viacep.com.br/ws/03565010/json/"
+        >CEP 03565010</a
+      ><br />
+      <a @click.prevent="findCEP" href="https://viacep.com.br/ws/03564050/json/"
+        >CEP 03564050</a
+      ><br />
+      <a @click.prevent="findCEP" href="https://viacep.com.br/ws/03563110/json/"
+        >CEP 03563110</a
+      ><br />
+      <a @click.prevent="findCEP" href="https://viacep.com.br/ws/03568000/json/"
+        >CEP 03568000</a
+      ><br />
+
+      <div>
+        <p>Bairro: <span v-text="endereco.bairro"></span></p>
+        <p>CEP: <span v-text="endereco.cep"></span></p>
+        <p>Complemento: <span v-text="endereco.complemento"></span></p>
+        <p>DDD: <span v-text="endereco.ddd"></span></p>
+        <p>GIA: <span v-text="endereco.gia"></span></p>
+        <p>IBGE: <span v-text="endereco.ibge"></span></p>
+        <p>Localidade: <span v-text="endereco.localidade"></span></p>
+        <p>Logradouro: <span v-text="endereco.logradouro"></span></p>
+        <p>SIAFI: <span v-text="endereco.siafi"></span></p>
+        <p>UF: <span v-text="endereco.uf"></span></p>
+      </div>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          endereco: {},
+        },
+        methods: {
+          findCEP(event) {
+            const link = event.currentTarget.href;
+            console.log(link);
+            fetch(link)
+              .then((r) => r.json())
+              .then((r) => {
+                console.log(r);
+                this.endereco = r;
+                console.log(this.endereco);
+              });
+          },
+        },
+      });
+      console.log(vm);
+    </script>
+  </body>
+</html>
