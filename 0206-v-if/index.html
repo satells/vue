@@ -7,5 +7,27 @@
     <script src="../lib/vue.js"></script>
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div id="app">
+      <template v-if="logado">
+        <h1>Usuário está logado</h1>
+        <button @click="logado = false">Deslogar</button>
+      </template>
+      <template v-else>
+        <h1>Usuário está deslogado</h1>
+        <button @click="logado = true">Logar</button>
+      </template>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          logado: true,
+        },
+      });
+
+      console.log(vm);
+    </script>
+  </body>
 </html>
