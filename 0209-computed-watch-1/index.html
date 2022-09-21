@@ -16,12 +16,29 @@
       </div>
       <button @click="contador++">Contar</button>
       <p v-text="contador"></p>
+
+      <ol>
+        <todo-item
+          v-for="item in groceryList"
+          v-bind:todo="item"
+          v-bind:key="item.id"
+        ></todo-item>
+      </ol>
     </div>
 
     <script>
+      Vue.component("todo-item", {
+        props: ["todo"],
+        template: "<li>{{ todo.text }}</li>",
+      });
       const vm = new Vue({
         el: "#app",
         data: {
+          groceryList: [
+            { id: 0, text: "Vegetais" },
+            { id: 1, text: "Queijo" },
+            { id: 2, text: "Qualquer outra coisa que humanos podem comer" },
+          ],
           contador: 0,
           carros: [
             {
@@ -43,6 +60,13 @@
           contador() {
             console.log(this.contador);
           },
+        },
+        created: function () {
+          console.log("Contador atualizado: " + this.contador);
+        },
+
+        beforeCreate: function () {
+          console.log("Contador antes de atualizar: " + this.contador);
         },
       });
       console.log(vm);
