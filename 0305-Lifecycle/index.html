@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../lib/vue.js"></script>
+    <title>Ciclo de criação</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{gitHub}}</p>
+      <button @click="contador++">Contar</button>
+      <button @click="destruir">Destruir</button>
+      {{contador}}
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          mensagem: "novo Vue.js",
+          gitHub: {},
+          contador: 0,
+        },
+        methods: {
+          puxarGitHub() {
+            fetch("http://api.github.com/users/origamid")
+              .then((r) => r.json())
+              .then((r) => {
+                this.gitHub = r;
+                console.log(this.gitHub);
+              });
+          },
+          destruir() {
+            this.$destroy();
+          },
+        },
+        beforeCreate() {
+          console.log("=========================================");
+          console.log("<<<< beforeCreate >>>>");
+          console.log(">>>variavel mensagem: " + this.mensagem);
+          console.log("Virutal DOM não foi criado.");
+          console.log("@el " + this.$el);
+          console.log("=========================================");
+        },
+        created() {
+          console.log("=========================================");
+          console.log("<<<< created >>>>");
+          console.log("Criada a variavel mensagem: " + this.mensagem);
+          this.puxarGitHub();
+          console.log("Virutal DOM não foi criado.");
+          console.log("@el " + this.$el);
+          console.log("=========================================");
+        },
+        beforeMount() {
+          console.log("=========================================");
+          console.log("<<<< beforeMount >>>>");
+          console.log("Variavel mensagem: " + this.mensagem);
+          console.log("Virutal DOM foi criado mas não foi preenchido.");
+          console.log(this.$el);
+          console.log("=========================================");
+        },
+        mounted() {
+          console.log("=========================================");
+          console.log("<<<< mounted >>>>");
+          console.log("Variavel mensagem: " + this.mensagem);
+          console.log("Virutal DOM foi criado e preenchido");
+          console.log(this.$el);
+          console.log("=========================================");
+        },
+        beforeUpdate() {
+          console.log("=========================================");
+          console.log("<<<< beforeUpdate >>>>");
+          console.log("Variavel mensagem: " + this.mensagem);
+          console.log("contador: " + this.contador);
+          console.log("=========================================");
+        },
+        updated() {
+          console.log("=========================================");
+          console.log("<<<< updated >>>>");
+          console.log("Variavel mensagem: " + this.mensagem);
+          console.log("contador: " + this.contador);
+          console.log("=========================================");
+        },
+        beforeDestroy() {
+          console.log("=========================================");
+          console.log("<<<< beforeDestroy >>>>");
+          console.log("Variavel mensagem: " + this.mensagem);
+          console.log("=========================================");
+        },
+        destroyed() {
+          console.log("=========================================");
+          console.log("<<<< destroyed >>>>");
+          console.log("Variavel mensagem: " + this.mensagem);
+          console.log("=========================================");
+        },
+      });
+    </script>
+  </body>
+</html>
