@@ -30,7 +30,13 @@ const vm = new Vue({
           this.produto = r;
         });
     },
+    fecharModal({ target, currentTarget }) {
+      if (target === currentTarget) {
+        this.produto = false;
+      }
+    },
   },
+
   created() {
     this.fetchProdutos();
   },
